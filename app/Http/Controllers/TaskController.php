@@ -7,12 +7,17 @@ use App\Task;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateTask;
 use App\Http\Requests\EditTask; //サイトに書いてないが追加　参考https://teratail.com/questions/93396
+use Illuminate\Support\Facades\Auth;
+
 
 
 class TaskController extends Controller
 {
+
     public function index(int $id)
     {
+        $folders = Auth::user()->folders()->get();
+
         // すべてのフォルダを取得する
         $folders = Folder::all();
 
